@@ -1,0 +1,101 @@
+---
+import RatingCard from '../components/RatingCard.astro'
+---
+
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <link rel='icon' type='image/svg+xml' href='/favicon-32x32.png' />
+    <meta name='viewport' content='width=device-width' />
+    <meta name='generator' content={Astro.generator} />
+    <title>Frontend Mentor | Interactive rating component</title>
+  </head>
+  <body>
+    <main>
+      <RatingCard />
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --orange: hsl(25, 97%, 53%);
+    --white: hsl(0, 0%, 100%);
+    --light-grey: hsl(217, 12%, 63%);
+    --medium-grey: hsl(216, 12%, 54%);
+    --dark-blue: hsl(213, 19%, 18%);
+    --very-dark-blue: hsl(216, 12%, 8%);
+  }
+  @font-face {
+    font-family: 'Overpass';
+    src: url('/fonts/Overpass-Regular.ttf') format('truetype');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Overpass';
+    src: url('/fonts/Overpass-Bold.ttf') format('truetype');
+    font-weight: 700;
+  }
+  * {
+    min-width: 0;
+    font: inherit;
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  html {
+    line-height: 1.5;
+  }
+  img,
+  video,
+  svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  button {
+    padding: 0;
+    border: none;
+    outline: none;
+    display: inline-block;
+    cursor: pointer;
+    color: inherit;
+    background-color: transparent;
+  }
+  body {
+    min-height: 100dvh;
+    margin: 0;
+    font-family: 'Overpass', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--white);
+    background-color: var(--very-dark-blue);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    text-wrap: balance;
+  }
+  p {
+    margin: 0;
+    text-wrap: pretty;
+  }
+  main {
+    min-height: 100dvh;
+    padding-inline: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (max-height: 500px) {
+    main {
+      padding-block: 3rem;
+    }
+  }
+</style>

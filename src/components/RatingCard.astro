@@ -1,0 +1,207 @@
+---
+
+---
+
+<div class='card-container'>
+  <div id='rating-card' class='rating-card'>
+    <div class='rating-card__icon'>
+      <img src='/images/icon-star.svg' alt='Icon star' />
+    </div>
+    <div class='rating-card__text'>
+      <h2>How did we do?</h2>
+      <p>
+        Please let us know how we did with your support request. All feedback is
+        appreciated to help us improve our offering!
+      </p>
+    </div>
+    <div id='rating-options' class='rating-card__options'>
+      <button type='button' value='1'>1</button>
+      <button type='button' value='2'>2</button>
+      <button type='button' value='3'>3</button>
+      <button type='button' value='4'>4</button>
+      <button type='button' value='5'>5</button>
+    </div>
+    <button type='button' class='btn-primary' id='btn-submit'>Submit</button>
+  </div>
+
+  <div id='success-card' class='success-card hidden'>
+    <div class='success-card__img'>
+      <img
+        src='/images/illustration-thank-you.svg'
+        alt='Illustration thank you'
+      />
+    </div>
+    <p class='success-card__rating'>
+      You selected <span id='user-rating'></span> out of 5
+    </p>
+    <div class='success-card__text'>
+      <h2>Thank you!</h2>
+      <p>
+        We appreciate you taking the time to give a rating. If you ever need
+        more support, don’t hesitate to get in touch!
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const ratingCard = document.querySelector('#rating-card')
+  const successCard = document.querySelector('#success-card')
+  const ratingOptions = document.querySelector('#rating-options')
+  const userRating = document.querySelector('#user-rating')
+  const btnSubmit = document.querySelector('#btn-submit')
+
+  let ratingValue = 0
+
+  ratingOptions.addEventListener('click', (ev) => {
+    const target = ev.target as HTMLButtonElement
+    const value = Number(target.value)
+
+    if (target.id !== 'rating-options') {
+      const activeButton = ratingOptions.querySelector('.active')
+      if (activeButton) activeButton.classList.remove('active')
+
+      if (!isNaN(value) || value > 0 || value < 6) {
+        ratingValue = value
+        target.classList.add('active')
+      }
+    }
+  })
+
+  btnSubmit.addEventListener('click', () => {
+    if (ratingValue > 0) {
+      ratingCard.classList.toggle('hidden')
+      successCard.classList.toggle('hidden')
+      userRating.textContent = ratingValue.toString()
+    }
+  })
+</script>
+
+<style>
+  .card-container {
+    max-width: 25rem;
+    min-height: 360px;
+    max-height: 416px;
+    padding: 1.5rem;
+    border-radius: 0.625rem;
+    background: rgb(31, 38, 48);
+    background: linear-gradient(
+      180deg,
+      rgba(31, 38, 48, 1) 0%,
+      rgba(25, 29, 38, 1) 100%
+    );
+  }
+  .rating-card.hidden {
+    display: none;
+  }
+  .rating-card__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dark-blue);
+  }
+  .rating-card__text {
+    margin-block: 1.25rem;
+  }
+  .rating-card__text > h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .rating-card__text > p {
+    margin-block-start: 0.5rem;
+    color: var(--light-grey);
+  }
+  .rating-card__options {
+    margin-block-start: 1.75rem;
+    margin-block-end: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .rating-card__options > button {
+    width: 2.65rem;
+    height: 2.65rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dark-blue);
+    transition-property: background-color, color;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+  }
+  .rating-card__options > button:hover {
+    color: var(--white);
+    background-color: var(--medium-grey);
+  }
+  .rating-card__options > button.active {
+    color: var(--white);
+    background-color: var(--orange);
+  }
+  .btn-primary {
+    width: 100%;
+    padding-block: 0.72rem;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 700;
+    background-color: var(--orange);
+    transition-property: background-color, color;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+  }
+  .btn-primary:hover {
+    color: var(--orange);
+    background-color: var(--white);
+  }
+
+  .success-card {
+    padding-block-start: 0.5rem;
+    text-align: center;
+  }
+  .success-card.hidden {
+    display: none;
+  }
+  .success-card__img {
+    display: flex;
+    justify-content: center;
+  }
+  .success-card__rating {
+    width: max-content;
+    padding-inline: 0.72rem;
+    padding-block: 0.25rem;
+    margin-inline: auto;
+    margin-block: 1.5rem;
+    border-radius: 9999px;
+    color: var(--orange);
+    background-color: var(--dark-blue);
+  }
+  .success-card__text > h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .success-card__text > p {
+    margin-block-start: 0.5rem;
+    color: var(--light-grey);
+  }
+
+  @media (min-width: 430px) {
+    .card-container {
+      padding: 2rem;
+    }
+    .rating-card__text > h2 {
+      font-size: 1.65rem;
+    }
+    .rating-card__options > button {
+      width: 3.25rem;
+      height: 3.25rem;
+    }
+
+    .success-card__text > h2 {
+      font-size: 1.65rem;
+    }
+  }
+</style>
